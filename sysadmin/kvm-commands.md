@@ -113,3 +113,36 @@ where:
 * 10.0.0.4 and 10001 (in my example above) is the VNC listening socket on the KVM server
 
 After logging in, use any local VNC client and connect to **localhost:5900** to reach the console of the VM.
+
+
+## Creating new VM:s
+
+### Cloning
+
+There are several ways to create new VM:s in KVM. One way is to clone an existing VM:
+
+```shell
+virt-clone -o <vm-name> -n <new-vm-name> --auto-clone
+```
+
+This will create an exact copy of <vm-name> and name it <new-vm-name>. There will be an exact clone of the .qcow2 disk-image in the same directory as the original.
+
+Note that you will get an IP conflict unless you change the IP address on either the original or the clone.
+
+### Importing existing disk
+
+Another way to create a new VM is to use an existing disk image and build a "computer" around that "hard drive":
+
+
+### Booting from CD ISO and install on empty disk
+
+virt-install --name pubweb2 --ram 4096 --vcpus=1 --os-type=ubuntu21.04 --disk /var/lib/libvirt/images/pubweb2.qcow2,size=150 --network bridge=br99,model=virtio --vnc --disk /home/jimmy/ubuntu-22.04.1.copy.iso,device=cdrom
+
+
+Todo:
+ - [ ] Add info on how to convert a vmdk image to qcow2
+ - [ ] Something else that just slipped my mind...
+
+
+
+
