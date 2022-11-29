@@ -77,3 +77,39 @@ I have a large number of vm:s that are clones of the same machine but with uniqu
 for X in $(seq 100 119); do virsh start linux-5-${X}; done
 
 ```
+
+
+## VNC ports
+
+The console of each VM can be reached via VNC and SSH port forwarding.
+
+To find out which VNC port a VM is connected to, run the following commanf:
+```shell
+virsh vncdisplay <vm-name>
+```
+
+The output shows which socket the console is bound to:
+
+```
+sudo virsh vncdisplay linux-5-101
+10.0.0.4:4101
+```
+
+The port number is a relative value where 0 means 5900 (standard port for VNC). To calculate the real port you must add 5900 to the number, in this case 5900+4101 = 10001
+
+
+## SSH port forwarding
+
+To reach the VNC port you can use SSH port forwarding (in my environment the socket 10.0.0.4:10001 is not reachable outside of the KVM host and in many other cases the socket is bound to localhost where port forwarding is the only way to reach that socket).
+
+To create a port forward using SSH you can use the following command:
+```shell
+ssh -p <srvport> <user>@<srvip> -L 5900:10.0.0.4:10001
+```
+where:
+* srvport is the ssh server port (if not 22)
+* user@srvip is the way you connect to the KVM server
+* 5900 is your local listening socket port on the ssh client
+* 10.0.0.4 and 10001 (in my example above) is the VNC listening socket on the KVM server
+
+After logging in, use any local VNC client and connect to **localhost:5900** to reach the console of the VM.
