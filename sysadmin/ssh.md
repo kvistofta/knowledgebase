@@ -1,12 +1,10 @@
 # The SSH protocol
 
-##About SSH
+## About SSH
 
 SSH is a protocol that creates a protected tunnel in which you can transfer various kinds of data. The most common usage for ssh is to connect to a terminal server or a shell to access a remote CLI (command line interface). SSH stands for Secure SHell, but you can also use SSH for secure file transfers as well as a tunneling protocol for TCP-traffic.
 
 SSH is a client/server protocol which means that for any single ssh session there is a client, and a server. The client is the part that initiates the connection (establish a TCP connection) to the server, and the server is that part that waits for incoming connections on a TCP socket.
-
-![Client-server Application - OOSE](data:image/png;base64,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)
 
 
 Which part is client or server is relative to a specific session. A computer can be both a ssh server and a client, and the same goes for a client computer. The client/server roles are important to distinguish when you look into a specific session since there are many different configuration files that are specific to ssh clients or servers.
@@ -359,24 +357,291 @@ Note: Crypto is also confidentiality. I mentioned above that the keys are being 
 As a matter of fact: almost all SSH traffic is encrypted with symmetric encryption methods as AES. But that´s another story. Back to the assymmetric keys!
 
 
-## creating ssh keys
+## Creating ssh keys
 
 In order to use key based authentication we must either create a new ssh keypair on the client or move already created keys over to this client. 
 
+A word of caution: I earlier said that private keys should never be moved. Remember that. If you have a computer A where you have already created ssh client keys to login to server X, and you now want to login to the same server X from the another computer B, it is tempting to take a copy of the keys from A and place them on B so that you can connect to X from either of these computers. That is fully possible. But if you start working in that direction, you might later realize that your keys are residing "all over the place.".
 
-- [ ] ssh keys
-- [ ] logging in with keys, authorized_keys
-- [ ] specifying key identity file
-- [ ] Creating ssh keys with ssh-keygen
-- [ ] Transfer public key manually and file permissions
-- [ ] ssh-copy-id
-- [ ] Extract the public key from the private
-- [ ] key passphrases
-- [ ] Running commands with ssh
-- [ ] Local and remote port forwarding
-- [ ] Escape to the ssh prompt
-- [ ] ssh-agent
-- [ ] ssh agent forwarding
-- [ ] 
+You can login to server X as nisse both from A and B, using one keypair on A and **another** keypair on B. That´s a much better solution! You just add 2 different public keys into the same /home/nisse/.ssh/authorized_keys file (we will talk about that file in the next section) on different lines. Way better!
+
+(You can also use SSH jump hosts or agent forwarding, but that´s an "advanced" feature of SSH and now and here is not the correct time and place for explaining those techniques. Maybe later...)
 
 
+
+It´s time to explain how these keys are created. The client keys are stored in ~/.ssh/id_rsa (the private key) and ~/.ssh/id_rsa.pub (the public key).  In the below example those files does not exist yet:
+
+```shell
+nisse@linux5-61:~$ ls -l .ssh
+total 4
+-rw-r--r-- 1 nisse nisse 222 Nov 30 13:50 known_hosts
+nisse@linux5-61:~$
+```
+
+The command for creating new keys is ssh-keygen. When we run this command (if we dont have any keys created yet) this will happen:
+
+```shell
+nisse@linux5-61:~$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/nisse/.ssh/id_rsa):
+```
+
+First of we are giving an opportunity to where to save the key(s). The default location is in most cases correct. I choose to just press Enter:
+
+```shell
+Enter passphrase (empty for no passphrase):
+```
+
+Now we are asked for a passphrase. A passphrase is a way to protect your private key. If someone else gets hold of your precious private key and it is not passphrase protected, that someone can use that key to login as you. If you add a passphrase, that someone needs to know that passphrase aswell in order to inpersonize you.
+
+On the other hand, if you passphrase your key, you have to enter that passphrase whenever you use that key to login somewhere (unless you use a ssh agent, more about that later). Also, som automated tasks (i.e scp) cannot be done easily with passphrase protected keys.
+
+In most cases I recommend **not** to passphrase your keys. In this example I wont, so I just press Enter:
+
+```shell
+Enter same passphrase again:
+```
+
+And Enter again :)
+
+```shell
+Your identification has been saved in /home/nisse/.ssh/id_rsa
+Your public key has been saved in /home/nisse/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:xW1PgEKZj+Y1hJRVFdhx8qsPgBnnwKy7ifU/cyCabds nisse@linux5-61
+The key's randomart image is:
++---[RSA 3072]----+
+|       oo*.oo+=o.|
+|        O.o....+ |
+|         Xo.o . .|
+|        +.@. o  .|
+|       +S+ +  .. |
+|        o. .. .  |
+|       o+ . .o   |
+|      oo+o.o .o  |
+|     . o.ooE+  . |
++----[SHA256]-----+
+```
+
+Done! What what is this ASCII art? In daily life it is something that no one cares about. :) It´s a way for those with NASA/CSI/NSA grade of security requirements to visually recognize this key. The fingerprint SHA256:xW1Pg... in a "graphical" presentation. 
+
+If we look inside of our .ssh directory the two ssh key files have now shown up as stated in the output above:
+
+```shell
+nisse@linux5-61:~$ ls -l .ssh
+total 12
+-rw------- 1 nisse nisse 2602 Dec  1 12:01 id_rsa
+-rw-r--r-- 1 nisse nisse  569 Dec  1 12:01 id_rsa.pub
+-rw-r--r-- 1 nisse nisse  222 Nov 30 13:50 known_hosts
+nisse@linux5-61:~$
+```
+
+
+Let´s have a look at these keys. First, the private key in id_rsa:
+
+`````shell
+nisse@linux5-61:~$ cat .ssh/id_rsa
+-----BEGIN OPENSSH PRIVATE KEY-----
+b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+NhAAAAAwEAAQAAAYEAlZtJgtWLigjZXa4nc8GxRKRDXdHFB4L0OrUcX8h23Efl0JswhNWr
+(A lot of lines removed for easier reading)
+RlBTzKLDUZD6EUXIVF7oZJIcCtiWWtkY6rPcfC5dYgJHdG+AHCQfZfZ+K7Y8JrJemNI0mJ
+2+BVyqIMmBA0TZAAAAD25pc3NlQGxpbnV4NS02MQECAw==
+-----END OPENSSH PRIVATE KEY-----
+nisse@linux5-61:~$
+`````
+
+If you ever want to copy/paste the content of tis file, remember to include both lines with the dashes (-----). They are part of the key.
+
+Now, the public key in id_rsa.pub:
+
+```shell
+nisse@linux5-61:~$ cat .ssh/id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCVm0mC1YuKCNldridzwbFEpENd0cUHgvQ6tRxfyHbcR+XQmzCE1auffR/CnD5kcht2zX9scr2tFjXwZid18VTGyMm+nEMeM1nK/bhhiZ0o1d9v2FQbM9iFuD1huX2/iLqO1Wieub1qD1LywIwDcMz1eG3LPxDiqsiaYY2YLd2G2vru2DVWyQQ5y16aSMB1ZTIUqLoCoXA4Xiel6Kdzh71KzjG8Cr3delUU90TRdf2cbpV+0fykb0sEmxXW6yv8AwdYn28o0eIZvb4fLjsn7ESe5IxKJvX3X66W8sIDNEgwVHdhdmbr5riWk7YUCM8Ag1LnBG5MVX2DkMmaA2lxbc7sRye/fnNWfMAa2462Lay50mE4b0hHZE3Lv8LSHaxUC7o2F8RUDhx1WuVeno+HC1pjhvrhXEnYhnSuwlwe0jihCGR17V7XbWoMAa1dAswA1YUi+0pXEIcR7ghoSBerDedytAKbQ48wXa/SB2gCeADldTvrhy/+sekhetCklEI/TQM= nisse@linux5-61
+nisse@linux5-61:~$
+```
+
+It might sound strange when I tell you that the public key is one single line. But it´s true. It might wrap differently depending on the width of your screen but is just shows with line breaks to make it possible to read the entire key. When you copy/paste this key remember to mark the entire line including the "ssh-rsa" in the beginning and the final string, in this example "nisse@linux5-61". They must follow along and it is all on one single line.
+
+(The trailer "nisse@linux5-610" is just an identifier telling who this key belongs to. It can actually be edited to anything, the text is ignored when using the key to login.)
+
+## Transfer public key to server
+
+
+In order to use your newly created keypair you must associate the public key with a remote login. This is done by copying the public key to the server ~/.ssh/authorized_keys file. This can be done in multiple ways: manually or with ssh-copy-id.
+
+### Manually copying the public key
+
+To manually copy the public key from the client to the server you mark and copy the entire key ("ssh-rsa .......... nisse@linux5.61" in my example), start an editor on the server, edit the ~/.ssh/autorized_keys file and paste the text on a new line, save the file and exit. 
+
+### Transfer the public key with ssh-copy-id
+
+I often prefer to use the tool ssh-copy-id to transfer the public key. It automates the process for you and it works like this:
+
+```shell
+nisse@linux5-61:~$ ssh-copy-id nisse@10.0.5.62
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/home/nisse/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+nisse@10.0.5.62's password:
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'nisse@10.0.5.62'"
+and check to make sure that only the key(s) you wanted were added.
+
+nisse@linux5-61:~$
+```
+
+You use the same syntax for specifying username and host as with the ssh-command: username@hostname, but the command is ssh-copy-id. The tool creates a SSH session to the server (asking you for your password to authenticate, this is probably the last time you have to enter that password, yay!), and inside of the protected tunnel it transfers the public key and writes it into your .ssh/authorized_keys file on the server. Cool, huh?
+
+Next time I login to the server:
+
+```shell
+nisse@linux5-61:~$ ssh nisse@10.0.5.62
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-132-generic x86_64)
+
+Last login: Wed Nov 30 14:16:43 2022 from 10.0.5.61
+nisse@linux5-62:~$
+```
+
+Like magic!
+
+However, there are a few pros and cons for the ssh-copy-id tool:
+
+Pros:
+* The simplicity. Everything is taken care for you, including file permissions (see next section)
+
+Cons:
+* The tool doesn´t always exist. As far as I know Windows 11 comes with cli-based SSH client but not the ssh-copy-id tool (please correct me if I am wrong)
+* If password-based authentication is disabled on the server you cannot login with password to add the key.
+
+
+
+## File permissions
+
+Both the client and the server are a bit "picky" about the permissions of the files involved. There are well founded reasons for that: On a multi user server you don´t want a user to steal another users private key! And you don´t want someone else adding **their** public key to **your** authoried_keys file! When logging in both the client and server verifies the permissions of these files before using them.
+
+### File permissions on the client
+
+Let´s have a look at what happens if you try to login to a remote server using a private key that is not "protected". 
+
+```shell
+nisse@linux5-61:~$ ls -la .ssh
+total 20
+drwx------ 2 nisse nisse 4096 Dec  1 13:28 .
+drwxr-xr-x 3 nisse nisse 4096 Nov 30 07:51 ..
+-rw------- 1 nisse nisse 2602 Dec  1 12:01 id_rsa
+-rw-r--r-- 1 nisse nisse  569 Dec  1 12:01 id_rsa.pub
+-rw-r--r-- 1 nisse nisse  222 Nov 30 13:50 known_hosts
+nisse@linux5-61:~$
+```
+
+As you can see above the file permissions for id_rsa (the private key) is 600 and it is owned by nisse:nisse. This means that no other user can do anything to the file. Lets break that:
+
+```shell
+nisse@linux5-61:~$ chmod go+r .ssh/id_rsa
+nisse@linux5-61:~$
+nisse@linux5-61:~$ ls -la .ssh
+total 20
+drwx------ 2 nisse nisse 4096 Dec  1 13:28 .
+drwxr-xr-x 3 nisse nisse 4096 Nov 30 07:51 ..
+-rw-r--r-- 1 nisse nisse 2602 Dec  1 12:01 id_rsa
+-rw-r--r-- 1 nisse nisse  569 Dec  1 12:01 id_rsa.pub
+-rw-r--r-- 1 nisse nisse  222 Nov 30 13:50 known_hosts
+nisse@linux5-61:~$
+```
+
+
+Now any user on the system has read access to the private key file. What happens when we try to use that file to login to a server?
+
+```shell
+nisse@linux5-61:~$ ssh nisse@10.0.5.62
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for '/home/nisse/.ssh/id_rsa' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "/home/nisse/.ssh/id_rsa": bad permissions
+nisse@10.0.5.62's password:
+```
+
+We are not allowed to use that key, and the client falls back to trying to authenticate with password!
+
+Best practice for file permissions on the client is the way it was before I broke it:
+
+```shell
+nisse@linux5-61:~$ ls -la .ssh
+total 20
+drwx------ 2 nisse nisse 4096 Dec  1 13:28 .
+drwxr-xr-x 3 nisse nisse 4096 Nov 30 07:51 ..
+-rw------- 1 nisse nisse 2602 Dec  1 12:01 id_rsa
+-rw-r--r-- 1 nisse nisse  569 Dec  1 12:01 id_rsa.pub
+-rw-r--r-- 1 nisse nisse  222 Nov 30 13:50 known_hosts
+nisse@linux5-61:~$
+```
+
+* The ~/.ssh directory should only be accessible by the user.
+* No files in the ~/.ssh directory should be writable by anyone except the user.
+* The private key file should not be readable by anyone except the user.
+
+### File permissions on the server
+
+Also on the server there are requirements for file permissions. This is how it should look:
+
+```shell
+nisse@linux5-62:~$ ls -la .ssh
+total 12
+drwx------ 2 nisse nisse 4096 Dec  1 14:16 .
+drwxr-xr-x 4 nisse nisse 4096 Nov 30 13:51 ..
+-rw------- 1 nisse nisse 1707 Dec  1 13:28 authorized_keys
+nisse@linux5-62:~$
+```
+
+
+Let´s brake it!
+
+```shell
+nisse@linux5-62:~$ chmod go+rwx .ssh/authorized_keys
+nisse@linux5-62:~$
+nisse@linux5-62:~$ ls -la .ssh
+total 12
+drwx------ 2 nisse nisse 4096 Dec  1 14:16 .
+drwxr-xr-x 4 nisse nisse 4096 Nov 30 13:51 ..
+-rw-rwxrwx 1 nisse nisse 1707 Dec  1 13:28 authorized_keys
+nisse@linux5-62:~$
+
+After logging out and trying to login again:
+
+nisse@linux5-61:~$ ssh nisse@10.0.5.62
+nisse@10.0.5.62's password:
+```
+
+We can no longer login with our key! And from the client perspective we get no clue whatsoever why! 
+
+Conclusion:
+
+You can create the .ssh-directory manually, create the authorized_keys file by hand, copying your key files from other computers into .ssh/id_rsa and .ssh/id_rsa.pub. It is just files with special names and content. But if you do it "by hand" you must be aware of the ownership and permissons of the .ssh-directory and the files within.
+
+When creating keys with ssh-keygen, and when copying the public key with ssh-copy-id, the tools sets the permissions according to best practice for you. How nice of them!
+
+
+## Different client keys
+
+
+## Extract the public key from the private
+
+## Key passphrases
+
+## Running commands with ssh
+
+## SCP file transfers
+
+## Port forwarding
+
+## Escape to the SSH prompt
+
+## SSH agent (007?)
+
+## SSH agent forwarding
