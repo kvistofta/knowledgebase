@@ -629,10 +629,78 @@ When creating keys with ssh-keygen, and when copying the public key with ssh-cop
 
 ## Different client keys
 
+There are many different type of ssh keys. The most common key types are RSA-based, which are stored in id_rsa and id_rsa.pub. As you can see if you run ssh with the -v option, the client tries to find several different key files when attempting to authenticate:
+
+```
+debug1: Trying private key: /home/nisse/.ssh/id_dsa
+debug1: Trying private key: /home/nisse/.ssh/id_ecdsa
+debug1: Trying private key: /home/nisse/.ssh/id_ecdsa_sk
+debug1: Trying private key: /home/nisse/.ssh/id_ed25519
+debug1: Trying private key: /home/nisse/.ssh/id_ed25519_sk
+debug1: Trying private key: /home/nisse/.ssh/id_xmss
+```
+
+In the above order, it first looks for id_rsa and if that exists it doesn´t look any further. It is beyond the scope of this document to describe the other files but if you want to understand more about the different key types [here](https://goteleport.com/blog/comparing-ssh-keys/).
 
 ## Extract the public key from the private
 
+If you, for any reason, lose your public key, you can extract it from the private key file with the following command:
+
+```shell
+ssh-keygen -y -f .ssh/id_rsa
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCVm0mC1YuKCNldridzwbFEpENd0cUHgvQ6tRxfyHbcR+XQmzCE1auffR/CnD5kcht2zX9scr2tFjXwZid18VTGyMm+nEMeM1nK/bhhiZ0o1d9v2FQbM9iFuD1huX2/iLqO1Wieub1qD1LywIwDcMz1eG3LPxDiqsiaYY2YLd2G2vru2DVWyQQ5y16aSMB1ZTIUqLoCoXA4Xiel6Kdzh71KzjG8Cr3delUU90TRdf2cbpV+0fykb0sEmxXW6yv8AwdYn28o0eIZvb4fLjsn7ESe5IxKJvX3X66W8sIDNEgwVHdhdmbr5riWk7YUCM8Ag1LnBG5MVX2DkMmaA2lxbc7sRye/fnNWfMAa2462Lay50mE4b0hHZE3Lv8LSHaxUC7o2F8RUDhx1WuVeno+HC1pjhvrhXEnYhnSuwlwe0jihCGR17V7XbWoMAa1dAswA1YUi+0pXEIcR7ghoSBerDedytAKbQ48wXa/SB2gCeADldTvrhy/+sekhetCklEI/TQM= nisse@linux5-61
+```
+
+If you for any reason lose your **private** key, restore your backup. If that fails, maybe you should work with something else. :)
+
+
 ## Key passphrases
+
+Passphrases adds an extra layer of security to ssh by implementing MFA (multi factor authentication). The key is something you **have**, and if you also require something you know **(**the passphrase) you are multi factored!
+
+To add a passphrase to an existing private key you run this command:
+
+```shell
+nisse@linux5-61:~$ ssh-keygen -p -f .ssh/id_rsa
+Key has comment 'nisse@linux5-61'
+Enter new passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved with the new passphrase.
+nisse@linux5-61:~$
+```
+
+From now on, every time you summon the holy private key for authentication, you will get asked about the passphrase:
+
+```shell
+nisse@linux5-61:~$ ssh  nisse@10.0.5.62
+Enter passphrase for key '/home/nisse/.ssh/id_rsa':
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-132-generic x86_64)
+
+Last login: Thu Dec  1 18:37:52 2022 from 10.0.5.61
+nisse@linux5-62:~$
+```
+
+Please not the distinction between "Enter passphrase for key" and "nisse@10.0.5.62´s password:".
+
+To remove the passphrase from the key or change to another passphrase:
+
+```shell
+nisse@linux5-61:~$ ssh-keygen -p
+Enter file in which the key is (/home/nisse/.ssh/id_rsa):
+Enter old passphrase:
+Key has comment 'nisse@linux5-61'
+Enter new passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved with the new passphrase.
+nisse@linux5-61:~$
+```
+
+
+
+
+## TODO:
+
+
 
 ## Running commands with ssh
 
